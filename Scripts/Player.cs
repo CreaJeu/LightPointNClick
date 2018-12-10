@@ -10,18 +10,40 @@ public class Player : MonoBehaviour {
     };
 
     State state;
+    NavMeshAgent navMeshAgent;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         state = State.READY;
-        //GetComponent<NavMeshAgent>().destination = new Vector3(10,0,10);
-	}
+        navMeshAgent = GetComponent<NavMeshAgent>();
+    }
 	
 	// Update is called once per frame
-	void Update () {
-        if (DestinationPicker.newDestination) {
+	void Update ()
+    {
+        if (DestinationPicker.newDestination)
+        {
+            state = State.WALKING;
             Debug.Log("dest ? " + DestinationPicker.newDestination + " " + DestinationPicker.destination);
-            GetComponent<NavMeshAgent>().destination = DestinationPicker.destination;
+            navMeshAgent.destination = DestinationPicker.destination;
+        }
+        if (state == State.WALKING)
+        {
+            NavMeshPathStatus status = navMeshAgent.pathStatus;
+            float dist = navMeshAgent.remainingDistance;
+            if (!navMeshAgent.pathPending &&
+                status == NavMeshPathStatus.PathComplete &&
+                dist <= navMeshAgent.stoppingDistance * 2)
+            {
+                state = State.READY;
+                if (PointNClickable.clicked != null)
+                {
+                    PointNClickable.clicked.PreClick();
+                    PointNClickable.clicked.Interact();
+                    PointNClickable.clicked = null;
+                }
+            }
         }
 	}
 }

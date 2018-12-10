@@ -9,22 +9,26 @@ public class DestinationPicker : MonoBehaviour {
     public static bool newDestination;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         newDestination = false;
         mainCamera = Camera.allCameras[0];
         myCollider = GetComponent<Collider>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         newDestination = false;
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0))
+        {
             //Debug.Log("zsaaszazc" + mainCamera);
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             //Debug.Log("hejejehekzelk");
 
             RaycastHit hit;
-            if (myCollider.Raycast(ray, out hit, 100.0f)) {
+            if (myCollider.Raycast(ray, out hit, 100.0f))
+            {
                 destination = hit.point;
                 //Debug.Log(destination);
                 newDestination = true;

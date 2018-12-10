@@ -7,7 +7,7 @@ public class PointNClickable : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Interact();
+        clicked = this;
     }
 
     public virtual void Interact()
