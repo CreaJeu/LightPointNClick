@@ -8,6 +8,8 @@ public class PointNClickable : MonoBehaviour {
     void OnMouseDown()
     {
         clicked = this;
+        DestinationPicker.destination = transform.position;
+        DestinationPicker.newDestination = true;
     }
 
     public virtual void Interact()

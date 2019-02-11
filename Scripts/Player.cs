@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
         if (DestinationPicker.newDestination)
         {
             state = State.WALKING;
-            Debug.Log("dest ? " + DestinationPicker.newDestination + " " + DestinationPicker.destination);
+            // Debug.Log("dest ? " + DestinationPicker.newDestination + " " + DestinationPicker.destination);
             navMeshAgent.destination = DestinationPicker.destination;
         }
         if (state == State.WALKING)
