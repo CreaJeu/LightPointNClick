@@ -11,6 +11,9 @@ public class AnimationTransform : MonoBehaviour
     public State state;
     public GameObject finalObject;
     public float acceleration;
+
+	private Vector3 finalPosition;
+	private Vector3 finalEulerAngles;
     private Vector3 amplitude;
     private Vector3 eulerAnglesAmplitude;
     private Vector3 speed;
@@ -21,6 +24,8 @@ public class AnimationTransform : MonoBehaviour
 
 	void Start()
 	{
+        finalPosition = finalObject.transform.position;
+        finalEulerAngles = finalObject.transform.eulerAngles;
         amplitude = finalObject.transform.position - this.transform.position;
 
         eulerAnglesAmplitude.x = this.transform.eulerAngles.x - finalObject.transform.eulerAngles.x;
@@ -64,8 +69,10 @@ public class AnimationTransform : MonoBehaviour
             // Test end of move
             if(isMoveOver())
             {
-                this.transform.position = finalObject.transform.position;
-                this.transform.rotation = finalObject.transform.rotation;
+                //this.transform.position = finalObject.transform.position;
+                //this.transform.rotation = finalObject.transform.rotation;
+                this.transform.position = finalPosition;
+                this.transform.eulerAngles = finalEulerAngles;
                 this.state = State.AFTER;
             }
 
@@ -78,7 +85,7 @@ public class AnimationTransform : MonoBehaviour
 
     public bool isMoveOver()
     {
-        bool isOver = Vector3.Dot(transform.position - finalObject.transform.position, amplitude) > 0;
+        bool isOver = Vector3.Dot(transform.position - finalPosition, amplitude) > 0;
             //Mathf.Sign(this.transform.position.x - this.finalObject.transform.position.x) == Mathf.Sign(amplitude.x);
         /*isOver = isOver &&
             Mathf.Sign(this.transform.position.y - this.finalObject.transform.position.y) == Mathf.Sign(amplitude.y);
