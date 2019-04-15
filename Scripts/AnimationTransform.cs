@@ -85,18 +85,22 @@ public class AnimationTransform : MonoBehaviour
 
     public bool isMoveOver()
     {
-        bool isOver = Vector3.Dot(transform.position - finalPosition, amplitude) > 0;
-            //Mathf.Sign(this.transform.position.x - this.finalObject.transform.position.x) == Mathf.Sign(amplitude.x);
-        /*isOver = isOver &&
-            Mathf.Sign(this.transform.position.y - this.finalObject.transform.position.y) == Mathf.Sign(amplitude.y);
+        //bool isOver = Vector3.Dot(transform.position - finalPosition, amplitude) > 0;
+
+        // Translation
+        bool isOver = Mathf.Sign(this.transform.position.x - finalPosition.x) == Mathf.Sign(amplitude.x);
         isOver = isOver &&
-            Mathf.Sign(this.transform.position.z - this.finalObject.transform.position.z) == Mathf.Sign(amplitude.z);
+            Mathf.Sign(this.transform.position.y - finalPosition.y) == Mathf.Sign(amplitude.y);
         isOver = isOver &&
-            Mathf.Sign(this.transform.eulerAngles.x - this.finalObject.transform.eulerAngles.x) == Mathf.Sign(eulerAnglesAmplitude.x);
+            Mathf.Sign(this.transform.position.z - finalPosition.z) == Mathf.Sign(amplitude.z);
+
+        // Rotation
         isOver = isOver &&
-            Mathf.Sign(this.transform.eulerAngles.y - this.finalObject.transform.eulerAngles.y) == Mathf.Sign(eulerAnglesAmplitude.y);
+            Mathf.Sign(this.transform.eulerAngles.x - finalEulerAngles.x) == Mathf.Sign(eulerAnglesAmplitude.x);
         isOver = isOver &&
-            Mathf.Sign(this.transform.eulerAngles.z - this.finalObject.transform.eulerAngles.z) == Mathf.Sign(eulerAnglesAmplitude.z);*/
+            Mathf.Sign(this.transform.eulerAngles.y - finalEulerAngles.y) == Mathf.Sign(eulerAnglesAmplitude.y);
+        isOver = isOver &&
+            Mathf.Sign(this.transform.eulerAngles.z - finalEulerAngles.z) == Mathf.Sign(eulerAnglesAmplitude.z);
 
         return isOver;
     }
