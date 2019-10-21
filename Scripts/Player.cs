@@ -12,6 +12,12 @@ public class Player : MonoBehaviour {
     State state;
     NavMeshAgent navMeshAgent;
 
+	public bool isWalking()
+	{
+		return state == State.WALKING;
+	}
+		
+
 	// Use this for initialization
 	void Start ()
     {
