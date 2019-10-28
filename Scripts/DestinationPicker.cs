@@ -8,7 +8,7 @@ public class DestinationPicker : MonoBehaviour {
     public static Vector3 destination;
     public static bool newDestination;
     public AudioSource goSFX;
-    public GameObject goSFXParent;
+    //public GameObject goSFXParent;
     /*public AudioClip goSFX;*/
 
 	// Use this for initialization
@@ -32,7 +32,8 @@ public class DestinationPicker : MonoBehaviour {
             //Debug.Log(destination);
             newDestination = true;
 
-			goSFXParent.transform.position = destination;
+			//goSFXParent.transform.position = destination;
+			goSFX.transform.position = destination;
 			goSFX.Play();
 			/*AudioSource.PlayClipAtPoint(goSFX, destination);*/ //ouch : new clip created and disposed each time
         }

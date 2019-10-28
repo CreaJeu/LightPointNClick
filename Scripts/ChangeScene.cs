@@ -13,11 +13,12 @@ public class ChangeScene : PointNClickable
         SceneManager.LoadScene(levelToAdd);
     }
 
-    public override void Interact ()
+	public override AudioSource Interact ()
     {
         if(isOn)
         {
             LoadLevel();
         }
+		return null;
     }
 }

@@ -46,7 +46,12 @@ public class Player : MonoBehaviour {
                 if (PointNClickable.clicked != null)
                 {
                     PointNClickable.clicked.PreClick();
-                    PointNClickable.clicked.Interact();
+					AudioSource sfx = PointNClickable.clicked.Interact();
+					if (sfx != null)
+					{
+						sfx.transform.position = PointNClickable.clicked.transform.position;
+						sfx.Play();
+					}
                     PointNClickable.clicked = null;
                 }
             }
