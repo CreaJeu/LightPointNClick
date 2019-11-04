@@ -12,8 +12,13 @@ public class Player : MonoBehaviour {
     State state;
     NavMeshAgent navMeshAgent;
 
-	// Use this for initialization
-	void Start ()
+    public void Awake ()
+    {
+        transform.position = ChangeScene.newScenePos;
+    }
+
+    // Use this for initialization
+    void Start ()
     {
         state = State.READY;
         navMeshAgent = GetComponent<NavMeshAgent>();
