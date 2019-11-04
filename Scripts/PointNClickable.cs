@@ -12,9 +12,9 @@ public class PointNClickable : MonoBehaviour {
         DestinationPicker.newDestination = true;
     }
 
-    public virtual void Interact()
+	public virtual AudioSource Interact()
     {
-    
+		return null;
     }
 
     public virtual void PreClick()

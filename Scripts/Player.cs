@@ -12,13 +12,14 @@ public class Player : MonoBehaviour {
     State state;
     NavMeshAgent navMeshAgent;
 
-    public void Awake ()
-    {
-        transform.position = ChangeScene.newScenePos;
-    }
+	public bool isWalking()
+	{
+		return state == State.WALKING;
+	}
+		
 
-    // Use this for initialization
-    void Start ()
+	// Use this for initialization
+	void Start ()
     {
         state = State.READY;
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -45,7 +46,12 @@ public class Player : MonoBehaviour {
                 if (PointNClickable.clicked != null)
                 {
                     PointNClickable.clicked.PreClick();
-                    PointNClickable.clicked.Interact();
+					AudioSource sfx = PointNClickable.clicked.Interact();
+					if (sfx != null)
+					{
+						sfx.transform.position = PointNClickable.clicked.transform.position;
+						sfx.Play();
+					}
                     PointNClickable.clicked = null;
                 }
             }
