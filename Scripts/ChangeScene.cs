@@ -5,27 +5,23 @@ public class ChangeScene : PointNClickable
 {
     public bool isOn;
     public string levelToAdd;
-    public Vector3 nextScenePos;
-    public static Vector3 newScenePos;
-
-    public void Awake ()
-    {
-        newScenePos = nextScenePos;
-    }
 
 	private static string currentSceneName;
 	private static System.Collections.Generic.Dictionary<string, GameObject>
 		loadedScenesRoots = new System.Collections.Generic.Dictionary<string, GameObject>();
 
-	public void Awake()
+	public void Start()
 	{
-		GameObject[] roots = SceneManager.GetActiveScene().GetRootGameObjects();
+		GameObject[] roots = gameObject.scene.GetRootGameObjects();
 		for (int i = 0; i < roots.Length; i++)
 		{
 			if (roots [i].activeSelf && roots[i].tag == "Untagged")
 			{
-				currentSceneName = SceneManager.GetActiveScene().name;
-				loadedScenesRoots.Add(currentSceneName, roots[i]);
+				currentSceneName = gameObject.scene.name;
+				if(!loadedScenesRoots.ContainsKey(currentSceneName))
+				{
+					loadedScenesRoots.Add(currentSceneName, roots[i]);
+				}
 				return;
 			}
 		}
@@ -36,7 +32,7 @@ public class ChangeScene : PointNClickable
 
     public void LoadLevel ()
     {
-		Debug.Log("loading scene "+levelToAdd);
+		//Debug.Log("loading scene "+levelToAdd);
 		GameObject tmpRoot;
 		loadedScenesRoots.TryGetValue (currentSceneName, out tmpRoot);
 		tmpRoot.SetActive (false);

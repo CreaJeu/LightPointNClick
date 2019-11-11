@@ -43,6 +43,7 @@ public class Player : MonoBehaviour {
                 dist <= navMeshAgent.stoppingDistance * 2)
             {
                 state = State.READY;
+				DestinationPicker.newDestination = false;
                 if (PointNClickable.clicked != null)
                 {
                     PointNClickable.clicked.PreClick();
