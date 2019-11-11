@@ -5,6 +5,13 @@ public class ChangeScene : PointNClickable
 {
     public bool isOn;
     public string levelToAdd;
+    public Vector3 nextScenePos;
+    public static Vector3 newScenePos;
+
+    public void Awake ()
+    {
+        newScenePos = nextScenePos;
+    }
 
 	private static string currentSceneName;
 	private static System.Collections.Generic.Dictionary<string, GameObject>
