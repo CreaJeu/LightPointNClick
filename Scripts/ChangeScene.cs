@@ -6,7 +6,7 @@ public class ChangeScene : PointNClickable
     public bool isOn;
     public string levelToAdd;
 
-	private static string currentSceneName;
+	public static string currentSceneName;
 	private static System.Collections.Generic.Dictionary<string, GameObject>
 		loadedScenesRoots = new System.Collections.Generic.Dictionary<string, GameObject>();
 
@@ -39,6 +39,7 @@ public class ChangeScene : PointNClickable
 		if (!loadedScenesRoots.ContainsKey (levelToAdd))
 		{
 			SceneManager.LoadScene (levelToAdd, LoadSceneMode.Additive);
+			currentSceneName = levelToAdd;
 			//new root gameobject not yet accessible here, see Awake()
 		}
 		else
