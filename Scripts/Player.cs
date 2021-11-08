@@ -12,6 +12,9 @@ public class Player : MonoBehaviour {
     State state;
     NavMeshAgent navMeshAgent;
 
+    //tmp
+    // public float tmpDist;
+
 	public bool isWalking()
 	{
 		return state == State.WALKING;
@@ -38,6 +41,9 @@ public class Player : MonoBehaviour {
         {
             NavMeshPathStatus status = navMeshAgent.pathStatus;
             float dist = navMeshAgent.remainingDistance;
+            // <<< tmp
+            // tmpDist = navMeshAgent.remainingDistance;
+            //   tmp >>>>
             if (!navMeshAgent.pathPending &&
                 status == NavMeshPathStatus.PathComplete &&
                 dist <= navMeshAgent.stoppingDistance * 2)
